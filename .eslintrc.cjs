@@ -1,6 +1,6 @@
 module.exports = {
     root: true,
-    extends: ['@nuxt/eslint-config'],
+    extends: ['@nuxtjs/eslint-config-typescript'],
     rules:
         {
             "vue/multi-word-component-names": ["error", {

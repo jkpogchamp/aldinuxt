@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import router from "#app/plugins/router";
-import type {UInput} from "#components";
-import type {FormError} from "#ui/types";
-import {type ComputedRef, type PropType} from "vue";
-import {useCart} from "~/stores/cart";
-import {type Product, useProductsStore} from "~/stores/products";
-import noPhoto from "assets/no-photo.png?url"
+import type { FormError } from '#ui/types'
+import { type ComputedRef, type PropType } from 'vue'
+import type { UInput } from '#components'
+import { useCart } from '~/stores/cart'
+import { type Product, useProductsStore } from '~/stores/products'
+import noPhoto from 'assets/no-photo.png?url'
 
 const cart = useCart()
 const toast = useToast()
@@ -28,19 +27,18 @@ const formState: FormState = reactive({
   amount: null
 })
 
-function formatToCurrency(price: number): string {
-  return  price.toLocaleString('en', {style: 'currency', currency: 'EUR', minimumFractionDigits: 1, maximumFractionDigits: 3})
+function formatToCurrency (price: number): string {
+  return price.toLocaleString('en', { style: 'currency', currency: 'EUR', minimumFractionDigits: 1, maximumFractionDigits: 3 })
 }
 
-async function increment(): Promise<void> {
+function increment (): void {
   input.value?.input?.focus()
-  if(!!formState.amount && formState.amount <= props.product?.availableAmount) formState.amount++
-  else formState.amount = 1
+  if (!!formState.amount && formState.amount <= props.product?.availableAmount) { formState.amount++ } else { formState.amount = 1 }
 }
 
-async function decrement(): Promise<void> {
+function decrement (): void {
   input.value?.input?.focus()
-  if(formState.amount) formState.amount--
+  if (formState.amount) { formState.amount-- }
 }
 
 const isIncrementDisabled: ComputedRef<boolean> = computed(() => {
@@ -57,14 +55,14 @@ const isCartButtonDisabled: ComputedRef<boolean> = computed(() => {
       formState.amount >= props.product.minOrderAmount)
 })
 
-const validate = (state: any): FormError[] => {
+const validate = (): FormError[] => {
   const errors = []
-  if (formState.amount === null || formState.amount < props.product.minOrderAmount) errors.push({ path: 'amount', message: 'Minimum order amount is ' + props.product?.minOrderAmount })
-  if (formState.amount === null || formState.amount > props.product.availableAmount) errors.push({ path: 'amount', message: 'Not enough items on stock' })
+  if (formState.amount === null || formState.amount < props.product.minOrderAmount) { errors.push({ path: 'amount', message: 'Minimum order amount is ' + props.product?.minOrderAmount }) }
+  if (formState.amount === null || formState.amount > props.product.availableAmount) { errors.push({ path: 'amount', message: 'Not enough items on stock' }) }
   return errors
 }
 
-async function onSubmit(): Promise<void> {
+async function onSubmit (): Promise<void> {
   cart.addToCart(props.product, formState.amount || 0)
   productStore.setAvailableAmountByID(props.product?.id, formState.amount || 0)
   toast.add({
@@ -72,9 +70,9 @@ async function onSubmit(): Promise<void> {
     color: 'primary',
     title: 'Item has been added to Your cart!',
     timeout: 5000,
-    actions: [{ variant: 'solid', color: 'primary', label: 'Check out cart', click: async () => await navigateTo('/cart')}]
+    actions: [{ variant: 'solid', color: 'primary', label: 'Check out cart', click: async () => await navigateTo('/cart') }]
   })
-  await nextTick(() => formState.amount = null)
+  await nextTick(() => { formState.amount = null })
 }
 </script>
 

@@ -1,20 +1,19 @@
 <script setup lang="ts">
-import type {ComputedRef} from "vue";
-import {type Product, useProductsStore} from "~/stores/products";
+import type { ComputedRef } from 'vue'
+import { type Product, useProductsStore } from '~/stores/products'
 
 const productsStore = useProductsStore()
 await callOnce(productsStore.fetchProducts)
 
 const page = ref<number>(1)
-const pageCount = ref<number>(5)
+const pageCount = ref<number>(6)
 const wasLoadMoreProductsButtonClicked = ref<boolean>(false)
 const allProducts: number = productsStore.products.length
 
-function loadMoreProduct() {
+function loadMoreProduct () {
   wasLoadMoreProductsButtonClicked.value = true
   pageCount.value += 4
 }
-
 
 const moreProductAmount: ComputedRef<number> = computed(() => {
   let returnValue: number = 0
