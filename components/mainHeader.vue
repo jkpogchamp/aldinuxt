@@ -1,5 +1,9 @@
 <script setup lang="ts">
+ import {useCart} from "~/stores/cart";
+
  const routes = useRouter().getRoutes().filter(({path}) => path !== '/cart')
+ const cart = useCart()
+
 </script>
 
 <template>
@@ -33,7 +37,7 @@
               <UChip
                 size="2xl"
                 color="green"
-                text="3"
+                :text="cart.getItemAmountInCart"
               >
                 <UIcon
                   name="i-heroicons-shopping-cart"

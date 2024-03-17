@@ -3,10 +3,11 @@ import type {UInput} from "#components";
 import type {FormError} from "#ui/types";
 import {type ComputedRef, type PropType} from "vue";
 import {useCart} from "~/stores/cart";
-import {type Product} from "~/stores/products";
+import {type Product, useProductsStore} from "~/stores/products";
 import noPhoto from "assets/no-photo.png?url"
 
 const cart = useCart()
+const productStore = useProductsStore()
 
 const props = defineProps({
   product: {
@@ -62,7 +63,8 @@ const validate = (state: any): FormError[] => {
 
 function onSubmit() {
   cart.addToCart(props.product, formState.amount || 0)
-  console.log(' asdas', cart.cartItems, cart.getTotal)
+  productStore.setAvailableAmountByID(props.product?.id, formState.amount || 0)
+  formState.amount = null
 }
 </script>
 
