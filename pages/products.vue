@@ -5,9 +5,9 @@ import {type Product, useProductsStore} from "~/stores/products";
 const productsStore = useProductsStore()
 await callOnce(productsStore.fetchProducts)
 
-const page = ref(1)
-const pageCount = ref(5)
-const wasLoadMoreProductsButtonClicked = ref(false)
+const page = ref<number>(1)
+const pageCount = ref<number>(5)
+const wasLoadMoreProductsButtonClicked = ref<boolean>(false)
 const allProducts: number = productsStore.products.length
 
 function loadMoreProduct() {
