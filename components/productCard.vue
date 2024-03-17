@@ -2,6 +2,7 @@
 import type { FormError } from '#ui/types'
 import { type ComputedRef, type PropType } from 'vue'
 import type { UInput } from '#components'
+import { useUtils } from '~/composables/utils'
 import { useCart } from '~/stores/cart'
 import { type Product, useProductsStore } from '~/stores/products'
 import noPhoto from 'assets/no-photo.png?url'
@@ -10,6 +11,7 @@ const cart = useCart()
 const toast = useToast()
 
 const productStore = useProductsStore()
+const utils = useUtils()
 
 const props = defineProps({
   product: {
@@ -26,10 +28,6 @@ interface FormState {
 const formState: FormState = reactive({
   amount: null
 })
-
-function formatToCurrency (price: number): string {
-  return price.toLocaleString('en', { style: 'currency', currency: 'EUR', minimumFractionDigits: 1, maximumFractionDigits: 3 })
-}
 
 function increment (): void {
   input.value?.input?.focus()
@@ -90,9 +88,9 @@ async function onSubmit (): Promise<void> {
       :alt="product.name"
       @error="imageSource = noPhoto"
     >
-    <p class="text-3xl mb-5">
+    <h2 class="text-3xl mb-5">
       {{ product.name }}
-    </p>
+    </h2>
     <UDivider class="mb-5 text-xs">
       {{ !!product.availableAmount ? 'On stock (' + product.availableAmount + 'pcs)' : 'Out of stock' }}
     </UDivider>
@@ -100,8 +98,8 @@ async function onSubmit (): Promise<void> {
       <dd>Minimum order amount:</dd>
       <dt>{{ product.minOrderAmount }}</dt>
     </dl>
-    <p class="text-2xl mb-4">
-      {{ formatToCurrency(product.price) }}
+    <p class="price text-2xl mb-4">
+      {{ utils.formatToCurrency(product.price) }}
     </p>
 
     <UForm

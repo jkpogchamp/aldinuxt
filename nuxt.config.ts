@@ -2,11 +2,11 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
-      '@nuxt/ui',
-      '@nuxt/test-utils/module',
-      '@pinia/nuxt'
+    '@nuxt/ui',
+    '@nuxt/test-utils/module',
+    '@pinia/nuxt'
   ],
   app: {
-      pageTransition: {name: 'page', mode: 'out-in'}
-    }
+    pageTransition: { name: 'page', mode: 'out-in' }
+  }
 })
