@@ -6,6 +6,7 @@
   <main>
     <NuxtPage />
   </main>
+  <UNotifications />
 </template>
 <style>
   .page-enter-active,

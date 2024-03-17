@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import router from "#app/plugins/router";
 import type {UInput} from "#components";
 import type {FormError} from "#ui/types";
 import {type ComputedRef, type PropType} from "vue";
@@ -7,6 +8,8 @@ import {type Product, useProductsStore} from "~/stores/products";
 import noPhoto from "assets/no-photo.png?url"
 
 const cart = useCart()
+const toast = useToast()
+
 const productStore = useProductsStore()
 
 const props = defineProps({
@@ -61,10 +64,17 @@ const validate = (state: any): FormError[] => {
   return errors
 }
 
-function onSubmit() {
+async function onSubmit(): Promise<void> {
   cart.addToCart(props.product, formState.amount || 0)
   productStore.setAvailableAmountByID(props.product?.id, formState.amount || 0)
-  formState.amount = null
+  toast.add({
+    icon: 'i-heroicons-check-badge',
+    color: 'primary',
+    title: 'Item has been added to Your cart!',
+    timeout: 5000,
+    actions: [{ variant: 'solid', color: 'primary', label: 'Check out cart', click: async () => await navigateTo('/cart')}]
+  })
+  await nextTick(() => formState.amount = null)
 }
 </script>
 
@@ -103,8 +113,6 @@ function onSubmit() {
     >
       <UFormGroup
         name="amount"
-        required
-        eager-validation
       >
         <div class="input-wrapper flex gap-1">
           <UButton

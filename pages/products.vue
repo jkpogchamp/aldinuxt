@@ -55,7 +55,6 @@ const visibleProducts: ComputedRef<Product[]> = computed(() => {
         :total="allProducts"
       />
     </UContainer>
-    <MiniCart />
   </section>
 </template>
 <style scoped></style>
