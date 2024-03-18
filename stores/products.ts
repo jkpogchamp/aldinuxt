@@ -13,7 +13,7 @@ export const useProductsStore = defineStore('productsStore', {
   }),
   actions: {
     async fetchProducts () {
-      const products: Product[] = await $fetch('https://63c10327716562671870f959.mockapi.io/products')
+      const products: Product[] = await $fetch<Product[]>('https://63c10327716562671870f959.mockapi.io/products')
       this.products = products
     },
     setAvailableAmountByID (updatedId: string, updatedAmount: number): void {

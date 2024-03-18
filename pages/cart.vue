@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import noPhoto from 'assets/no-photo.png?url'
 
 definePageMeta({
@@ -9,7 +10,7 @@ const TABLE_DATA_KEYS = ['name', 'amount', 'price', 'subtotal', 'actions', 'img'
 type TableDataKeys = typeof TABLE_DATA_KEYS[number]
 
 const cart = useCart()
-const productsStore = useProductsStore()
+const { getTotal } = storeToRefs(cart)
 const utils = useUtils()
 const isOpen = ref(false)
 
@@ -49,17 +50,7 @@ function openModal (id: string) {
 }
 
 function removeItemFromCart () {
-  productsStore.$patch((state) => {
-    state.products = state.products.map((product) => {
-      if (product.id === activeItemID.value) {
-        product.availableAmount += cart.cartItems.find(item => item.id === activeItemID.value)?.amount || 0
-      }
-      return product
-    })
-  })
-  cart.$patch((state) => {
-    state.cartItems = state.cartItems.filter(item => item.id !== activeItemID.value)
-  })
+  cart.removeFromCart(activeItemID.value)
   isOpen.value = false
 }
 </script>
@@ -98,8 +89,10 @@ function removeItemFromCart () {
       </template>
       <template #footer>
         <div>
-          <p class="flex justify-between">
-            <span class="text-xl">Total cart value:</span> <span class="text-3xl font-bold">{{ utils.formatToCurrency(cart.getTotal) }}</span>
+          <p class="total flex justify-between">
+            <span class="text-xl">Total cart value:</span> <span class="text-3xl font-bold">{{
+              utils.formatToCurrency(getTotal)
+            }}</span>
           </p>
         </div>
       </template>

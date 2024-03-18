@@ -21,7 +21,7 @@ const props = defineProps({
 })
 const imageSource = ref<string>(props.product.img)
 const input = ref<InstanceType<typeof UInput> | null>(null)
-interface FormState {
+export interface FormState {
   amount: null | number
 }
 
