@@ -73,9 +73,6 @@ async function onSubmit (): Promise<void> {
   await nextTick(() => { formState.amount = null })
 }
 
-function setDefaultImage () {
-  imageSource.value = noPhoto
-}
 </script>
 
 <template>
@@ -86,6 +83,7 @@ function setDefaultImage () {
       class="product-image"
       height="100"
       width="100"
+      loading="lazy"
       :src="imageSource || noPhoto"
       :alt="product.name"
       :placeholder="noPhoto"

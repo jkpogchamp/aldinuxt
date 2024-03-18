@@ -30,7 +30,7 @@ export const useCart = defineStore('cart', {
   getters: {
     getTotal (): number {
       return this.cartItems.reduce((acc, { subtotal }) => {
-        return acc += new Decimal(acc).add(subtotal).toDP(3).toNumber()
+        return new Decimal(acc).add(subtotal).toDP(3).toNumber()
       }, 0)
     },
     getItemAmountInCart (): number {
