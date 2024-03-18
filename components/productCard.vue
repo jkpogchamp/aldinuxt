@@ -72,22 +72,24 @@ async function onSubmit (): Promise<void> {
   })
   await nextTick(() => { formState.amount = null })
 }
+
+function setDefaultImage () {
+  imageSource.value = noPhoto
+}
 </script>
 
 <template>
   <UCard
     class="text-center hover:bg-gray-600 group"
   >
-    <img
-      :id="'image-' + product.id"
+    <NuxtImg
       class="product-image"
       height="100"
       width="100"
-      loading="lazy"
       :src="imageSource || noPhoto"
       :alt="product.name"
-      @error="imageSource = noPhoto"
-    >
+      :placeholder="noPhoto"
+    />
     <h2 class="text-3xl mb-5">
       {{ product.name }}
     </h2>

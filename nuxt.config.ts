@@ -4,7 +4,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui',
     '@nuxt/test-utils/module',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@nuxt/image'
   ],
   app: {
     pageTransition: { name: 'page', mode: 'out-in' }

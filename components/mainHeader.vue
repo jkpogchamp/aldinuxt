@@ -1,9 +1,8 @@
 <script setup lang="ts">
- import {useCart} from "~/stores/cart";
+import { useCart } from '~/stores/cart'
 
- const routes = useRouter().getRoutes().filter(({path}) => path !== '/cart')
- const cart = useCart()
-
+const routes = useRouter().getRoutes().filter(({ path }) => path !== '/cart')
+const cart = useCart()
 </script>
 
 <template>
