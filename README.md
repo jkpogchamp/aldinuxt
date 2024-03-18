@@ -1,75 +1,70 @@
-# Nuxt 3 Minimal Starter
+# Nuxt 3 Shopping Cart
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is a Nuxt 3 project with TypeScript and Vue.js. It includes a shopping cart functionality with a product listing and cart management.
 
-## Setup
+## Getting Started
 
-Make sure to install the dependencies:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+- Node.js
+- npm
+
+### Installing
+
+1. Clone the repository:
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+git clone <repository-url>
 ```
 
-## Development Server
+2. Navigate to the project directory:
+
+```bash
+cd <project-directory>
+```
+
+3. Install the dependencies:
+
+```bash
+npm install
+```
+
+## Running the Application
 
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## Running the Tests
+
+To run the unit tests:
+
+```bash
+npm run test
+```
+
+## Building the Application
 
 Build the application for production:
 
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+## Built With
 
-```bash
-# npm
-npm run preview
+- [Nuxt 3](https://nuxt.com/docs/getting-started/introduction) - The web framework used
+- [Vue.js](https://vuejs.org/) - The JavaScript framework used
+- [TypeScript](https://www.typescriptlang.org/) - The primary language used
+- [Pinia](https://pinia.esm.dev/) - State management library used
+- [Vitest](https://vitest.dev/) - Test runner used
+- [NuxtUI](https://ui.nuxt.com/) - UI library used
 
-# pnpm
-pnpm run preview
 
-# yarn
-yarn preview
+## Authors
 
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- **Kalinics János** - *Initial work* - [jkpogchamp](https://github.com/jkpogchamp)

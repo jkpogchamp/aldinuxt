@@ -6,7 +6,7 @@ const cart = useCart()
 </script>
 
 <template>
-  <header class="bg-gray-900 mb-10 md:mb-20">
+  <header class="bg-gray-900 mb-10 md:mb-20 sticky top-0 left-0 z-10">
     <UContainer>
       <nav>
         <ul class="flex items-stretch">

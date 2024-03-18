@@ -66,9 +66,9 @@ async function onSubmit (): Promise<void> {
   toast.add({
     icon: 'i-heroicons-check-badge',
     color: 'primary',
-    title: 'Item has been added to Your cart!',
+    title: 'Your cart has been updated!',
     timeout: 5000,
-    actions: [{ variant: 'solid', color: 'primary', label: 'Check out cart', click: async () => await navigateTo('/cart') }]
+    actions: [{ variant: 'solid', color: 'primary', label: 'Go to cart!', click: async () => await navigateTo('/cart') }]
   })
   await nextTick(() => { formState.amount = null })
 }
